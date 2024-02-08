@@ -8,13 +8,22 @@ while guess_count > 0:
     if guess == 'q':
         print(f"The number was {number}.")
         break
-    if int(guess) == number:
-        print("Congratulations! You guessed the right number.")
-        break
-    else:
-        guess_count -= 1
-        if guess_count > 0:
-            print(f"Sorry! That's not quite right. Try again...")
-        else:
-            print(f'No more guesses left! The number I was thinking of was {number}')
+    try:
+        if int(guess) == number:
+            print("Congratulations! You guessed the right number.")
             break
+        elif int(guess) < number:
+            print('That number is too low! Guess again... ')
+
+        elif int(guess) > number:
+            print('That number is too high! Guess again... ')
+    except ValueError:
+        print('Enter a number')
+        continue
+
+    
+    guess_count -= 1
+    if guess_count == 0:
+        print(f'No more guesses left! The number I was thinking of was {number}')
+    
+        
